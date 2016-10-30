@@ -37,6 +37,42 @@ $(function () {
         });
         return false;
     });
+    $("#find_meal_button").click(function () {
+        var section = $("input[name=section]").val();
+        var xaddress = $("input[name=xaddress]").val();
+        var yaddress = $("input[name=yaddress]").val();
+        var start_time = $("input[name=start_time]").val();
+        var end_time = $("input[name=end_time]").val();
+        food_type = []
+        $.each($("input[name='food_type[]']:checked"), function () {
+            food_type.push($(this).val());
+        });
+        interests = [];
+        $.each($("input[name='interests[]']:checked"), function () {
+            interests.push($(this).val());
+        });
+
+        $.post("about_handler.php", {
+            section: section,
+            xaddress: xaddress,
+            yaddress: yaddress,
+            start_time: start_time,
+            end_time: end_time,
+            food_type: food_type,
+            interests: interests
+        }, function (result) {
+            $.getScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyBJ-4qkk1ERXu7kd9bkOIqAOkTit-VUo-k", function () {
+                var lat = window.something.geometry.location.lat;
+                var lon = window.something.geometry.location.lng;
+                var title = window.something.name;
+                initMap(lat, lon, title);
+            });
+            $('#meal').modal('hide');
+            $('#mealModal1').modal('show');
+
+        });
+        return false;
+    });
 
     $("#lost-form").submit(function () {
         var $ls_email = $('#lost_email').val();
@@ -117,4 +153,5 @@ $(function () {
             $iconTag.removeClass($iconClass + " " + $divClass);
         }, $msgShowTime);
     }
-});
+})
+;

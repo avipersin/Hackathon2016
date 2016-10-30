@@ -29,7 +29,10 @@ if ($section == "about") {
     if (mysqli_num_rows($result) > 0) {
         $username = mysqli_fetch_assoc($result);
         $username = $username['username'];
+        session_start();
+        $_SESSION["username"] = $username;
         echo "Welcome, " . $username . "!";
+
     } else {
         echo "-1";
     }
