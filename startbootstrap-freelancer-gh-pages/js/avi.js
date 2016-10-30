@@ -14,3 +14,5 @@ function showPosition(position) {
     $(x).val(position.coords.latitude);
     $(y).val(position.coords.latitude);
 }
+
+

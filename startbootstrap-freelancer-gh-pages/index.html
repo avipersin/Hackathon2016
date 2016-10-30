@@ -311,9 +311,12 @@
                         <p><i class="material-icons">access_time</i> 12:30pm-1:45pm</p>
                         <p><i class="material-icons">today</i> Today, Oct 30</p>
                         <p><i class="material-icons">location_on</i> {{meal.name}} @{{meal.vicinity}}</p>
-                        <p><i class="material-icons">people</i>Number of People: {{meal.max_population}}</p>
-                        <p><i class="material-icons">people_outline</i>Spots left: {{meal.spots_left}}</p>
-                        <p>Attendees so far: {{meal.guests}}</p>
+                        <p id="total_people"><i class="material-icons">people</i>Number of People:
+                            {{meal.max_population}}</p>
+                        <p><i class="material-icons">people_outline</i>Spots left: <span id="spots_left">{{meal.spots_left}}</span>
+                        </p>
+                        <p id="guests">Attendees so far: {{meal.guests}}</p>
+
                         <button type="button" class="btn btn-default" onClick="rsvp()">RSVP</button>
                         <button id="next_meal" type="button" class="btn btn-default">Next</button>
 

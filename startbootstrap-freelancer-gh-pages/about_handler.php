@@ -1,4 +1,6 @@
 <?php
+
+session_start();
 /**
  * Created by PhpStorm.
  * User: avipe
@@ -21,6 +23,9 @@ $db_selected = mysqli_select_db($conn, 'welunch');
 $section = $_POST["section"];
 
 if ($section == "about") {
+} elseif ($section == "username") {
+    echo $_SESSION['username'];
+
 } elseif ($section == "login") {
     $username = "'" . $_POST["login_username"] . "'";
     $password = "'" . $_POST["login_password"] . "'";
@@ -29,9 +34,9 @@ if ($section == "about") {
     if (mysqli_num_rows($result) > 0) {
         $username = mysqli_fetch_assoc($result);
         $username = $username['username'];
-        session_start();
+
         $_SESSION["username"] = $username;
-        echo "Welcome, " . $username . "!";
+        echo "Welcome, " . $_SESSION["username"] . "!";
 
     } else {
         echo "-1";
