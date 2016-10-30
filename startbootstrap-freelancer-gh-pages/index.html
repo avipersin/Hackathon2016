@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Food Buddies</title>
+    <title>Food BUDDIES</title>
     <!-- Bootstrap Core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Theme CSS -->
@@ -21,6 +21,8 @@
           type="text/css">
     <script type="text/javascript" src="js/meal.js"></script>
     <script src="vendor/sweetalert/sweetalert.min.js"></script>
+    <script src="vendor/vue/js/vue.min.js"></script>
+
     <link rel="stylesheet" type="text/css" href="vendor/sweetalert/sweetalert.css">
 
 
@@ -191,7 +193,7 @@
                                    data-validation-required-message="Please enter your email address.">
                             <p class="help-block text-danger"></p>
                         </div>
-                    </div>
+                    </di    v>
                     <div class="row control-group">
                         <div class="form-group col-xs-12 floating-label-form-group controls">
                             <label>Phone Number</label>
@@ -293,20 +295,6 @@
                         <p>From the comfort of your home when you're feeling lonely, you decide you want to make some
                             new friends. So you log into Food Buddies, and you find a meal where you'll be able to eat
                             delicious food and meet new people with your self-same interests!</p>
-                        <ul class="list-inline item-details">
-                            <li>Client:
-                                <strong><a href="http://startbootstrap.com">Start Bootstrap</a>
-                                </strong>
-                            </li>
-                            <li>Date:
-                                <strong><a href="http://startbootstrap.com">April 2014</a>
-                                </strong>
-                            </li>
-                            <li>Service:
-                                <strong><a href="http://startbootstrap.com">Web Development</a>
-                                </strong>
-                            </li>
-                        </ul>
                         <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>
                             Close
                         </button>
@@ -327,16 +315,18 @@
         <div class="container">
             <div class="row">
                 <div class="modal-body">
-                    <h2>More About Red Meal </h2>
+                    <h2>More About meal at {{meal.name}} </h2>
                     <hr class="star-primary">
                     <div class="underMeal">
                         <p><i class="material-icons">access_time</i> 12:30pm-1:45pm</p>
                         <p><i class="material-icons">today</i> Today, Oct 30</p>
-                        <p><i class="material-icons">location_on</i> Pete's Burger</p>
-                        <p><i class="material-icons">people</i> 3 people attending</p>
-                        <p><i class="material-icons">people_outline</i> 5 spots left</p>
+                        <p><i class="material-icons">location_on</i> {{meal.name}} @{{meal.vicinity}}</p>
+                        <p><i class="material-icons">people</i>Number of People: {{meal.max_population}}</p>
+                        <p><i class="material-icons">people_outline</i>Spots left: {{meal.spots_left}}</p>
                         <p>Attendees so far: Harry S., Rachel A., Peter S.</p>
                         <button type="button" class="btn btn-default" onClick="rsvp()">RSVP</button>
+                        <button id="next_meal" type="button" class="btn btn-default">Next</button>
+
                     </div>
                     <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close
                     </button>
@@ -552,9 +542,12 @@
 <!-- Theme JavaScript -->
 <script src="js/freelancer.min.js"></script>
 <script src="js/modal.js"></script>
+
 <script src="js/avi.js"></script>
 <script src="js/freelancer.min.js"></script>
 <script src="https://code.jquery.com/ui/1.10.2/jquery-ui.min.js"></script>
+<script src="js/geolocation.js"></script>
+
 <script src="js/jquery.caret.min.js"></script>
 <script src="js/jquery.tag-editor.js"></script>
 <script>
