@@ -822,7 +822,6 @@ var restaurant = new Vue({
 });
 window.something = relevant_meals[0];
 
-
 $("#next_meal").click(function () {
     i = (i + 1) % 3;
     restaurant.meal = relevant_meals[i];
