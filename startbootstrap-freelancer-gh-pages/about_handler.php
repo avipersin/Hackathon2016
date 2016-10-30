@@ -17,13 +17,33 @@ $conn = new mysqli($servername, $username, $password);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-echo "Connected successfully";
 $db_selected = mysqli_select_db($conn, 'welunch');
 $section = $_POST["section"];
 
 if ($section == "about") {
-    $interests = $_POST["interests"];
-    $sql = "INSERT INTO users (username, first_name, last_name, email, password, interests) VALUES ('john', 'doe', 'john@example.com', 'KLJF', 'jhjdf', $interests);";
+} elseif ($section == "login") {
+    $username = "'" . $_POST["login_username"] . "'";
+    $password = "'" . $_POST["login_password"] . "'";
+    $sql = "select username from users where username = $username and password = $password";
+    $result = mysqli_query($conn, $sql);
+    if (mysqli_num_rows($result) > 0) {
+        $username = mysqli_fetch_assoc($result);
+        $username = $username['username'];
+        echo "Welcome, " . $username . "!";
+    } else {
+        echo "-1";
+    }
+} elseif ($section == "register") {
+    $username = "'" . $_POST["register_username"] . "'";
+    $password = "'" . $_POST["register_password"] . "'";
+    $email = "'" . $_POST["register_email"] . "'";
+    $sql = "INSERT INTO users (username, email, password) VALUES ($username, $email, $password);";
+    $result = mysqli_query($conn, $sql);
+    if ($result > 0) {
+        echo '1';
+    } else {
+        echo "-1";
+    }
 } elseif ($section == "find_meal") {
     $start_time = "'" . $_POST["start_time"] . "'";
     $end_time = "'" . $_POST["end_time"] . "'";
